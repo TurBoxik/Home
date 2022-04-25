@@ -99,4 +99,4 @@ import PostsApi from "./components/PostsApi.vue"
 }
 
 
-</script>123
+</script>

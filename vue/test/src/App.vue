@@ -1,0 +1,4 @@
+
+<template>
+  <h1 @click="showConfetti">🎉 Congratulations!</h1>
+</template>

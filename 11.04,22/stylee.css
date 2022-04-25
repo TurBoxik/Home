@@ -1,0 +1,9 @@
+th, td{
+border: 3px black;
+padding: 13px;
+}
+th {
+    background:rgb(251, 255, 0);
+    font-weight: bold;
+    font-style: italic; 
+}

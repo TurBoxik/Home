@@ -1,5 +1,5 @@
 <template>
-        <div class="col">
+        <div class="col" v-if="numbers == l || numbers == l+1 || numbers == l+2 || numbers == l+3 || numbers == l+4 || numbers == l+5">
           <div class="card shadow-sm">
             <img src="https://img.wprost.pl/img/marcin-najman-pod-siedziba-klubu-rakow-czestochowa/74/83/27a6feab8f8245640ba2da8dda49.png" height="225">
             <div class="card-body">
@@ -13,23 +13,24 @@
             </div>
               <p v-if="toggle == false"></p>
               <p class="text-center p-3" v-else>{{discription}}</p>
-              <br><small class="text-muted text-end p-3">9 mins</small>
-          </div>
-        </div>
+              <br><small class="text-muted text-end p-3">{{numbers}}</small>    
+</div>
+</div>
 </template>
 
 <script>
 export default{
-    props:['title', 'discription'],
+    props:['title', 'discription', 'numbers', 'l'],
     data(){
         return{
-            toggle: false
+            toggle: false,
+            shownumber: null,
         }
     },
     methods: {
         show(){
             this.toggle = !this.toggle
-        }
+        },
     }
 }
 </script>

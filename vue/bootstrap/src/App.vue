@@ -12,7 +12,6 @@
           <h4 class="text-white">Contact</h4>
           <ul class="list-unstyled">
             <li><a href="https://img.pixers.pics/pho_wat(s3:700/FO/53/38/51/71/700_FO53385171_785dfcdd0396f56ae63b5c51030b1fbd.jpg,606,700,cms:2018/10/5bd1b6b8d04b8_220x50-watermark.png,over,386,650,jpg)/poduszki-dekoracyjne-ork-nerwowy-portret-twarz.jpg.jpg" class="text-white">Dis</a></li>
-            <a href="#/ff">FF</a>
           </ul>
         </div>
       </div>
@@ -44,12 +43,15 @@
   <div class="album py-5 bg-light">
     <div class="container">
  <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
-<PostsApi v-for="post in posts[0]" 
-        :key="post.id" 
-        :title="post.title"
-        :discription="post.body" 
-        :numbers="post.id"
-        :l="this.l"/>
+          <PostsApi v-for="post in posts[0]" 
+            :key="post.id" 
+            :title="post.title"
+            :discription="post.body" 
+            :numbers="post.id"
+            :l="this.l"
+            :k="this.k"
+            :suma="this.suma"
+          :checking="this.checking"/>
       </div>
   </div>
 </div>
@@ -62,9 +64,23 @@
         <span aria-hidden="true">&laquo;</span>
         </a>
         </li>
-    <li class="page-item"><a class="page-link" >1</a></li>
-    <li class="page-item"><a class="page-link" @click="site()">2</a></li>
-    <li class="page-item"><a class="page-link" href="#">3</a></li>
+    <li class="page-item"><a class="page-link" @click="cards('1')">1</a></li>
+    <li class="page-item"><a class="page-link" @click="cards('2')">2</a></li>
+    <li class="page-item"><a class="page-link" @click="cards('3')">3</a></li>
+    <li class="page-item"><a class="page-link" @click="cards('4')">4</a></li>
+    <li class="page-item"><a class="page-link" @click="cards('5')">5</a></li>
+    <li class="page-item"><a class="page-link" @click="cards('6')">6</a></li>
+    <li class="page-item"><a class="page-link" @click="cards('7')">7</a></li>
+    <li class="page-item"><a class="page-link" @click="cards('8')">8</a></li>
+    <li class="page-item"><a class="page-link" @click="cards('9')">9</a></li>
+    <li class="page-item"><a class="page-link" @click="cards('10')">10</a></li>
+    <li class="page-item"><a class="page-link" @click="cards('11')">11</a></li>
+    <li class="page-item"><a class="page-link" @click="cards('12')">12</a></li>
+    <li class="page-item"><a class="page-link" @click="cards('13')">13</a></li>
+    <li class="page-item"><a class="page-link" @click="cards('14')">14</a></li>
+    <li class="page-item"><a class="page-link" @click="cards('15')">15</a></li>
+    <li class="page-item"><a class="page-link" @click="cards('16')">16</a></li>
+    <li class="page-item"><a class="page-link" @click="cards('17')">17</a></li>
     <li class="page-item">
       <a  @click="change('+')" class="page-link" aria-label="Next">
         <span aria-hidden="true">&raquo;</span>
@@ -86,18 +102,17 @@
 
 <script>
 import PostsApi from "./components/PostsApi.vue"
-import FF from './components/FF.vue'
 
 const routes = {
-  '/ff': FF,
 }
 
   export default {
     components:{
      PostsApi  
     },
- mounted()  {
+ mounted(){
    this.postss(),
+   this.checking(),
     window.addEventListener('hashchange', () => {
     this.currentPath = window.location.hash
   })
@@ -105,21 +120,22 @@ const routes = {
   data() {
    return {
      posts: [],
-     i: null,
      l: 1,
+     k: 6,
+     s: null,
+     check: false,
      currentPath: window.location.hash,
    }
   },
   methods: {
-    postss() {
+    postss(){
      fetch('https://jsonplaceholder.typicode.com/posts')
       .then(response => response.json())
       .then(data => 
       {
         this.posts.push(data); 
       })
-      
-   },
+    },
     change(operation){
     switch (operation){
       case '+': 
@@ -135,16 +151,91 @@ const routes = {
       break;
     }  
     },
-    site(){
-      this.l += 6
-      console.log(this.l)
-    }
+    cards(number){
+    switch (number){
+      case '1': 
+      this.l = 1
+      break;
+
+      case '2': 
+      this.l = 7
+      break;
+      
+      case '3':
+      this.l = 13 
+      break;
+
+      case '4':
+      this.l = 19 
+      break;
+      
+      case '5': 
+      this.l = 25
+      break;
+
+      case '6': 
+      this.l = 31
+      break;
+      
+      case '7':
+      this.l = 37 
+      break;
+
+      case '8':
+      this.l = 43 
+      break;
+
+      case '9': 
+      this.l = 49
+      break;
+
+      case '10': 
+      this.l = 55
+      break;
+      
+      case '11':
+      this.l = 61 
+      break;
+
+      case '12':
+      this.l = 67 
+      break;
+
+      case '13': 
+      this.l = 73
+      break;
+
+      case '14': 
+      this.l = 79
+      break;
+      
+      case '15':
+      this.l = 85 
+      break;
+
+      case '16':
+      this.l = 91 
+      break;
+
+      case '17':
+      this.l = 97 
+      break;
+
+    }  
+    },
+    checking(){
+          if(this.numbers > this.l){
+            this.check == true
+          }
+        },
   },
-  
   computed: {
     currentView() {
       return routes[this.currentPath.slice(1) || '/']
-    }
+    },
+    suma() {
+      return this.l + this.k;
+    },
   },
 }
 

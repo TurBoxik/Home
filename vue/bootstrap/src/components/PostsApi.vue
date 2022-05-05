@@ -1,5 +1,5 @@
 <template>
-     <div class="col" v-if="numbers == l || numbers < suma ">
+     <div class="col" v-if="numbers > (j*cards-cards) && numbers <= j*cards">
           <div class="card shadow-sm">
             <img src="https://img.wprost.pl/img/marcin-najman-pod-siedziba-klubu-rakow-czestochowa/74/83/27a6feab8f8245640ba2da8dda49.png" height="225">
             <div class="card-body">
@@ -19,7 +19,7 @@
 
 <script>
 export default{
-    props:['title', 'discription', 'numbers', 'l', 'suma', 'checking'],
+    props:['title', 'discription', 'numbers', 'j', 'cards'],
 
     mounted(){
  },

@@ -41,7 +41,7 @@
 
   <div class="album py-5 bg-light">
     <div class="container">
- <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+        <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
           <UsersApi v-for="user in users[0]" 
             :key="user.id" 
             :name="user.name"
@@ -50,19 +50,18 @@
             :numbers="user.id"
             :j="j"
             :cards="cards"/>
-      </div>
+       </div>
+    </div>
   </div>
-</div>
 </main>
-<div class="d-flex justify-content-center">
+  <div class="d-flex justify-content-center">
     <PaginAtion 
-      :totalPages="r"
+      :totalPages="peg"
       :perPage="cards"
       :currentPage="currentPage"
       @pagechanged="onPageChange"
-      @x="x"
-    />
-</div>
+      @x="x"/>
+  </div>
 
 <footer class="text-muted py-5">
   <div class="container">
@@ -95,11 +94,12 @@ import PaginAtion from './components/PaginAtion.vue'
      cards: 8,
      j: null,
      r: 0,
+     peg: 12,
    }
   },
   methods: {
-    userslist(){
-     fetch('https://626b91876a86cd64adbe2d1f.mockapi.io/api/v1/users')
+    userslist(page=1){
+     fetch('https://626b91876a86cd64adbe2d1f.mockapi.io/api/v1/users?page='+page+'&limit=8')
       .then(response => response.json())
       .then(data => 
       {
@@ -112,7 +112,7 @@ import PaginAtion from './components/PaginAtion.vue'
       this.j = x
     },
     onPageChange(page) {
-      this.currentPage = page;
+      this.currentPage = page; 
     },
     rest(){
       if(this.long % this.cards != 0){

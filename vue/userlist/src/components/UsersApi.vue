@@ -1,5 +1,5 @@
 <template>
-     <div class="col" v-if="numbers > (j*cards-cards) && numbers <= j*cards">
+     <div class="col">
           <div class="card shadow-sm">
             <img src="{{avatar}}" height="225" />
             <div class="card-body">
